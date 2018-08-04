@@ -4,6 +4,10 @@
 
 [Full browsable API documentation](http://rickkas7.github.io/SerialBufferRK/) is available.
 
+SerialBufferRK creates a thread to continuously read from the hardware serial port and copy the data into a thread-safe ring buffer. You can choose the size of the ring buffer.
+
+You could then read the data at your leisure out of loop. The USART serial buffer is only 64 bytes, but by using a much larger buffer (say, 4096 bytes or even larger) you can greatly reduce the likelihood of lost data.
+
 ## Using it
 
 If you are using Particle Build (Web IDE), search for the library `SerialBufferRK` and add it.
@@ -67,6 +71,9 @@ SerialLogHandler logHandler;
 // call serBuf.read() instead of Serial1.read()
 SerialBuffer<4096> serBuf(Serial1);
 
+unsigned long lastDisplay = 0;
+int totalReceived = 0;
+
 void setup() {
 	Serial.begin();
 	Serial1.begin(230400);
@@ -85,9 +92,10 @@ void loop() {
 	if (millis() - lastDisplay >= 5000) {
 		lastDisplay = millis();
 
-		Log.info("totalReceived=%u", numReceived, maxInBuffer, totalReceived);
+		Log.info("totalReceived=%u", totalReceived);
 	}
 }
+
 ```
 
 ## Test Code
