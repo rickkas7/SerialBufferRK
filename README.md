@@ -111,11 +111,13 @@ The sender and receiver use the same linear congruential generator pseudo-random
 
 Monitor the serial output on the receiver.
 
+The left column is the runtime in milliseconds. numReceived is the number of bytes received in a 5 second period. That's constant so I know the sender is keeping the serial pumping at full speed. maxInBuffer is the maximum number of bytes buffered on a call to loop. In this test, the receiver is just sitting there idle (but cloud connected) so the max isn't high. However with only a 64-byte buffer you have so little margin for error before losing data that buffering is basically a necessity at 230400.
+
 ```
-0000948089 [app] INFO: numReceived=115385 maxInBuffer=45 totalReceived=21669298
-0000953089 [app] INFO: numReceived=115385 maxInBuffer=46 totalReceived=21784683
-0000958089 [app] INFO: numReceived=115385 maxInBuffer=45 totalReceived=21900068
-0000963089 [app] INFO: numReceived=115385 maxInBuffer=43 totalReceived=22015453
+0050334900 [app] INFO: numReceived=115385 maxInBuffer=27 totalReceived=1161326111
+0050339900 [app] INFO: numReceived=115385 maxInBuffer=24 totalReceived=1161441496
+0050344900 [app] INFO: numReceived=115385 maxInBuffer=31 totalReceived=1161556881
+0050349900 [app] INFO: numReceived=115385 maxInBuffer=27 totalReceived=1161672266
 ```
 
-
+This test ran overnight and 1,161,672,266 bytes (1 GB) of data was received without errors or missing bytes at 230400 baud.

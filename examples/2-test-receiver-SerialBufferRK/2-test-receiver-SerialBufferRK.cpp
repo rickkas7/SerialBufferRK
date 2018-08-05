@@ -3,6 +3,7 @@
 #include "SerialBufferRK.h"
 
 SYSTEM_THREAD(ENABLED);
+SYSTEM_MODE(SEMI_AUTOMATIC);
 
 SerialLogHandler logHandler;
 
@@ -22,6 +23,7 @@ int rseed = 1;
 void setup() {
 	Serial.begin();
 	Serial1.begin(230400);
+	Particle.connect();
 
 	resetSequence();
 }
@@ -67,6 +69,39 @@ void loop() {
 
 		numReceived = 0;
 		maxInBuffer = 0;
+	}
+
+	// Handle the serial user interface
+	{
+		int c = Serial.read();
+		if (c >= 0) {
+			switch(tolower(c)) {
+			case 'a':
+				Log.info("delay 10 ms.");
+				delay(10);
+				break;
+			case 'b':
+				Log.info("delay 100 ms.");
+				delay(100);
+				break;
+			case 'c':
+				Log.info("delay 1s");
+				delay(1000);
+				break;
+			case 'd':
+				Log.info("delay 2s");
+				delay(2000);
+				break;
+			case 'h':
+				Log.info("Cloud disconnect");
+				Particle.disconnect();
+				break;
+			case 'i':
+				Log.info("Cloud connect");
+				Particle.connect();
+				break;
+			}
+		}
 	}
 }
 
