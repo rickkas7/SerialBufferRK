@@ -8,9 +8,11 @@
 SerialBufferBase::SerialBufferBase(uint8_t *buf, size_t bufSize, USARTSerial &port) :
 	buf(buf), bufSize(bufSize), port(port), ring(buf, bufSize) {
 
-	os_thread_create(&thread, "serialBuffer", OS_THREAD_PRIORITY_DEFAULT, threadFunctionStatic, (void *)this, 256);
 }
 
+void SerialBufferBase::setup() {
+	os_thread_create(&thread, "serialBuffer", OS_THREAD_PRIORITY_DEFAULT, threadFunctionStatic, (void *)this, 256);
+}
 
 int SerialBufferBase::available() {
 	return ring.availableForRead();

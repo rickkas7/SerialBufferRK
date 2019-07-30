@@ -23,6 +23,10 @@ int rseed = 1;
 void setup() {
 	Serial.begin();
 	Serial1.begin(230400);
+
+	// You must call serBuf.setup() from setup!
+	serBuf.setup();
+
 	Particle.connect();
 
 	resetSequence();

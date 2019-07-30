@@ -30,6 +30,15 @@ public:
 	SerialBufferBase(uint8_t *buf, size_t bufSize, USARTSerial &port);
 
 	/**
+	 * @brief You must call setup() from setup()!
+	 *
+	 * This call was added in version 0.0.2 of the library do solve an incompatibility
+	 * with thread creation from a global object, mainly on Gen 3 devices with newer Device OS
+	 * versions.
+	 */
+	void setup();
+
+	/**
 	 * @brief Returns the number of bytes available to read from the serial port
 	 *
 	 * This is a standard Arduino/Wiring method for Stream objects.

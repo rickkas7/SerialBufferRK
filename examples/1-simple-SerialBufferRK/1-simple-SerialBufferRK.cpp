@@ -16,6 +16,9 @@ int totalReceived = 0;
 void setup() {
 	Serial.begin();
 	Serial1.begin(230400);
+
+	// You must call serBuf.setup() from setup!
+	serBuf.setup();
 }
 
 void loop() {

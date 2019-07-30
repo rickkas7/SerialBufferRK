@@ -38,6 +38,13 @@ SerialBuffer<4096> serBuf(Serial1);
 
 This allocates a 4096 byte serial buffer connected to Serial1.
 
+Make sure you add a call to serBuf.setup() from setup()!
+
+```
+	// You must call serBuf.setup() from setup!
+	serBuf.setup();
+```
+
 Whenever you would read from Serial1, you should instead read from serBuf. This includes using things like available() and read() as well as the Wiring/Aruduino functions like find(), readStringUntil(), etc.
 
 ```
@@ -77,6 +84,9 @@ int totalReceived = 0;
 void setup() {
 	Serial.begin();
 	Serial1.begin(230400);
+	
+	// You must call serBuf.setup() from setup!
+	serBuf.setup();
 }
 
 void loop() {
@@ -121,3 +131,11 @@ The left column is the runtime in milliseconds. numReceived is the number of byt
 ```
 
 This test ran overnight and 1,161,672,266 bytes (1 GB) of data was received without errors or missing bytes at 230400 baud.
+
+## Version History
+
+#### 0.0.2
+
+- Fixed a thread initalization problem that mostly affected Gen 3 devices with newer Device OS versions.
+
+
