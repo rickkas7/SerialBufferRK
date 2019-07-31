@@ -136,6 +136,6 @@ This test ran overnight and 1,161,672,266 bytes (1 GB) of data was received with
 
 #### 0.0.2
 
-- Fixed a thread initalization problem that mostly affected Gen 3 devices with newer Device OS versions.
+- Fixed a thread initialization problem that mostly affected Gen 3 devices with newer Device OS versions. Make sure you add a call to serBuf.setup() to setup()!
 
 
