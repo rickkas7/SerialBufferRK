@@ -134,6 +134,10 @@ This test ran overnight and 1,161,672,266 bytes (1 GB) of data was received with
 
 ## Version History
 
+#### 0.0.3
+
+- Increased the stack size to 512 bytes. It could cause the device to hang on the P2 with 4.0.0.
+
 #### 0.0.2
 
 - Fixed a thread initialization problem that mostly affected Gen 3 devices with newer Device OS versions. Make sure you add a call to serBuf.setup() to setup()!

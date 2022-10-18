@@ -1,8 +1,0 @@
-- build: examples/1-simple-SerialBufferRK
-  photon: [0.6.3, 0.7.0, 0.8.0-rc.8]
-  p1: [latest]
-  electron: [0.6.4, 0.7.0, 0.8.0-rc.8]
-- build: examples/2-test-receiver-SerialBufferRK
-  photon: [latest]
-- build: examples/3-test-sender-SerialBufferRK
-  photon: [latest]

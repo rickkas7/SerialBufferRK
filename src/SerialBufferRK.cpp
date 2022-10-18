@@ -11,7 +11,7 @@ SerialBufferBase::SerialBufferBase(uint8_t *buf, size_t bufSize, USARTSerial &po
 }
 
 void SerialBufferBase::setup() {
-	os_thread_create(&thread, "serialBuffer", OS_THREAD_PRIORITY_DEFAULT, threadFunctionStatic, (void *)this, 256);
+	os_thread_create(&thread, "serialBuffer", OS_THREAD_PRIORITY_DEFAULT, threadFunctionStatic, (void *)this, 512);
 }
 
 int SerialBufferBase::available() {
