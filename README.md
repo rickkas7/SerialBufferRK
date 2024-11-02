@@ -2,6 +2,9 @@
 
 *Serial buffer for the Particle Photon, P1, and Electron to make dealing with receiving data, especially at higher data rates, more reliable by implementing a larger buffer.*
 
+NOTE: You should not use this library! In Device OS 3.3.1 you can use [acquireSerial1Buffer](https://docs.particle.io/reference/device-os/api/serial/acquireserial1buffer/#acquireserial1buffer-) to just change the size of the hardware buffer. This is more efficient and eliminates issues where the worker thread cannot empty the serial buffer fast enough, which can occur at high baud rates.
+
+
 [Full browsable API documentation](http://rickkas7.github.io/SerialBufferRK/) is available.
 
 SerialBufferRK creates a thread to continuously read from the hardware serial port and copy the data into a thread-safe ring buffer. You can choose the size of the ring buffer.
